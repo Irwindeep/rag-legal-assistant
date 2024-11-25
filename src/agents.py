@@ -5,7 +5,7 @@ class CaseDiscoveryAgent:
     def __init__(self, retriever):
         self.retriever = retriever
 
-    def discover_cases(self, query):
+    def handle(self, query):
         results = self.retriever.retrieve(query)
         return results
 
@@ -13,24 +13,24 @@ class DocumentSummarizationAgent:
     def __init__(self, model="facebook/bart-large-cnn"):
         self.summarizer = pipeline("summarization", model=model)
 
-    def summarize(self, text, max_length=200):
+    def handle(self, text, max_length=200):
         summary = self.summarizer(text, max_length=max_length, truncation=True)
         return summary[0]["summary_text"]
 
 class LegalDraftingAgent:
     def __init__(self):
         pass
-    
-    def draft_document(self, context, clauses):
+
+    def handle(self, query):
         # Placeholder for drafting logic
-        return f"Drafting document with context: {context} and clauses: {clauses}"
+        return f"Drafting document with query: {query}"
 
 class QueryResolutionAgent:
     def __init__(self, retriever, model="gpt-4"):
         self.retriever = retriever
         self.generator = pipeline("text-generation", model=model)
 
-    def resolve_query(self, query, context_docs=3, max_tokens=300):
+    def handle(self, query, context_docs=3, max_tokens=300):
         retrieved_docs = self.retriever.retrieve(query, top_k=context_docs)
         context = "\n\n".join([doc["text"] for doc in retrieved_docs])
 

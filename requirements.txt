@@ -1,0 +1,5 @@
+spacy==3.8.2
+transformers==4.46.3
+pytesseract==0.3.13
+pdfplumber==0.11.4
+pillow==11.0.0
