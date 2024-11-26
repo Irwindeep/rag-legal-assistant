@@ -60,7 +60,7 @@ class LegalAidAgent:
         relevant_docs = self.find_relevant_documents(query)
         context = "\n\n".join([doc["content"] for doc in relevant_docs])
 
-        answer = self.qa_pipeline(f"Answer the following questions:\n\nQuestion: {query}\n\nContext: {context}", max_length=4096, temperature=0.7, top_p=0.9)
+        answer = self.qa_pipeline(f"Answer the following questions:\n\nQuestion: {query}\n\nContext: {context}"[:4096], max_length=4096, temperature=0.7, top_p=0.9)
         return {"relevant_docs": relevant_docs, "answer": answer["answer"]}
 
     def __call__(self, query: str):

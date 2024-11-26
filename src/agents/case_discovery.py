@@ -65,7 +65,7 @@ class CaseDiscoveryAgent:
     def generate_summary(self, documents, query: str) -> str:
         concatenated_docs = "\n\n".join([doc["text"] for doc in documents])
 
-        summary = self.pipe(concatenated_docs+'\n\n'+query, max_length=4096, temperature=0.7, top_p=0.9)
+        summary = self.pipe((concatenated_docs+'\n\n'+query)[:4096], max_length=4096, temperature=0.7, top_p=0.9)
         return summary[0]["generated_text"]
     
     def retrieve_and_generate(self, query, top_k=5):
