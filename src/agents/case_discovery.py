@@ -1,6 +1,6 @@
 import os, faiss
 import numpy as np
-from query_decompose.preprocess import PreprocessAttachment
+from ..query_decompose.preprocess import PreprocessAttachment
 from sentence_transformers import SentenceTransformer
 
 class CaseDiscoveryAgent:

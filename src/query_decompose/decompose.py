@@ -1,4 +1,4 @@
-from preprocess import PreprocessAttachment
+from .preprocess import PreprocessAttachment
 import spacy
 from sentence_transformers import SentenceTransformer, util
 

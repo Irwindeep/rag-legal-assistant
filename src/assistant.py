@@ -1,8 +1,8 @@
 from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
-from agents.case_discovery import CaseDiscoveryAgent
-from agents.legal_aid import LegalAidAgent
-from agents.legal_draft import LegalDraftingAgent
-from query_decompose.decompose import Decomposer
+from .agents.case_discovery import CaseDiscoveryAgent
+from .agents.legal_aid import LegalAidAgent
+from .agents.legal_draft import LegalDraftingAgent
+from .query_decompose.decompose import Decomposer
 
 model = AutoModelForCausalLM.from_pretrained(
     "microsoft/Phi-3-mini-4k-instruct",
