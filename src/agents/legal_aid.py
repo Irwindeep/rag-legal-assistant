@@ -3,7 +3,7 @@ import os, faiss
 import numpy as np
 
 class LegalAidAgent:
-    def __init__(self, pipe, knowledge_base_path=os.path.abspath("../../data/casedocs/"), embedding_dim=768, index_path="case_index.faiss"):
+    def __init__(self, pipe, knowledge_base_path="/content/rag-legal-assistant/data/casedocs", embedding_dim=768, index_path="case_index.faiss"):
         self.knowledge_base_path = knowledge_base_path
         self.embedding_dim = embedding_dim
         self.index_path = index_path
