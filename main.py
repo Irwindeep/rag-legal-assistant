@@ -1,4 +1,4 @@
-from .src.assistant import Assistant
+from src.assistant import Assistant
 
 def main(query=None, attachment=None):
     legal_assistant = Assistant()
