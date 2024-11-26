@@ -66,4 +66,4 @@ class LegalAidAgent:
     def __call__(self, query: str):
         self.build_index()
         results = self.provide_aid(query)
-        return results
+        return results["answer"]
