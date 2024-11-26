@@ -16,7 +16,7 @@ class Decomposer:
         try:
             self.nlp = spacy.load("en_core_web_md")
         except OSError:
-            download("en_core_web_trf")
+            download("en_core_web_md")
             self.nlp = spacy.load("en_core_web_md")
 
         self.embedding_model = SentenceTransformer("nlpaueb/legal-bert-base-uncased")
