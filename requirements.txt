@@ -6,3 +6,4 @@ pdfplumber
 pillow
 faiss-cpu
 streamlit
+accelerate
