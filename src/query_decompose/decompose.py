@@ -1,6 +1,8 @@
 from .preprocess import PreprocessAttachment
 import spacy
 from sentence_transformers import SentenceTransformer, util
+import subprocess
+import sys
 
 LEGAL_TASK_LABELS = {
     "case discovery": ["case law", "precedent", "legal cases"],
@@ -12,7 +14,12 @@ LEGAL_TASK_LABELS = {
 class Decomposer:
     def __init__(self) -> None:
         self.attachment_preprocessor = PreprocessAttachment()
-        self.nlp = spacy.load("en_core_web_trf")
+        try:
+            self.nlp = spacy.load("en_core_web_trf")
+        except OSError:
+            subprocess.check_call([sys.executable, "-m", "spacy", "download", "en_core_web_trf"])
+            self.nlp = spacy.load("en_core_web_trf")
+
         self.embedding_model = SentenceTransformer("nlpaueb/legal-bert-base-uncased")
 
         self.task_embeddings = {

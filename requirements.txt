@@ -7,4 +7,3 @@ pillow
 faiss-cpu
 streamlit
 accelerate
-en-core-web-trf
