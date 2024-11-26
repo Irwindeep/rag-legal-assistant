@@ -28,8 +28,9 @@ class PreprocessAttachment:
         except Exception as e:
             raise RuntimeError(f"Error processing image file: {e}")
         
-    def __call__(self, file_name: str) -> str:
-        file_path = os.path.join("./uploads", file_name)
+    def __call__(self, file_name: str, uploads=True) -> str:
+        if uploads: file_path = os.path.join("./uploads", file_name)
+        else: file_path = file_name
         file_extension = os.path.splitext(file_path)[-1].lower()
 
         if file_extension == ".pdf": return self._pdf_to_text(file_path)
