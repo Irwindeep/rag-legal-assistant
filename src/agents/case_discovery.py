@@ -4,7 +4,7 @@ from ..query_decompose.preprocess import PreprocessAttachment
 from sentence_transformers import SentenceTransformer
 
 class CaseDiscoveryAgent:
-    def __init__(self, pipe, case_docs_dir="../../data/casedocs/", index_path="case_index.faiss", embedding_dim=768) -> None:
+    def __init__(self, pipe, case_docs_dir=os.path.abspath("../../data/casedocs/"), index_path="case_index.faiss", embedding_dim=768) -> None:
         self.case_docs_dir = case_docs_dir
         self.index_path = index_path
         self.embedding_dim = embedding_dim

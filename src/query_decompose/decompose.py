@@ -14,10 +14,10 @@ class Decomposer:
     def __init__(self) -> None:
         self.attachment_preprocessor = PreprocessAttachment()
         try:
-            self.nlp = spacy.load("en_core_web_md")
+            self.nlp = spacy.load("en_core_web_trf")
         except OSError:
-            download("en_core_web_md")
-            self.nlp = spacy.load("en_core_web_md")
+            download("en_core_web_trf")
+            self.nlp = spacy.load("en_core_web_trf")
 
         self.embedding_model = SentenceTransformer("nlpaueb/legal-bert-base-uncased")
 
