@@ -12,6 +12,7 @@ class CaseDiscoveryAgent:
         self.preprocessor = PreprocessAttachment()
         self.doc_metadata = []
         self.index = self._initialise_index()
+        self.index_exist = False
 
         self.pipe = pipe
 
@@ -19,6 +20,7 @@ class CaseDiscoveryAgent:
         if os.path.exists(self.index_path):
             index = faiss.read_index(self.index_path)
             print(f"Loaded FAISS index from {self.index_path}")
+            self.index_exist = True
         else:
             index = faiss.IndexFlatL2(self.embedding_dim)
             print("Initialized a new FAISS index")
@@ -42,6 +44,7 @@ class CaseDiscoveryAgent:
 
         faiss.write_index(self.index, self.index_path)
         print(f"FAISS index saved to {self.index_path}")
+        self.index_exist = True
 
     def fusion_retrieval(self, query: str, top_k: int = 5):
         query_embedding = self.embedding_model.encode(query)

@@ -10,12 +10,15 @@ class LegalAidAgent:
         self.embedding_model = SentenceTransformer("all-mpnet-base-v2")
         self.qa_pipeline = pipe
         self.index = self._initialise_index()
+        self.index_exist = False
+
         self.doc_metadata = []
 
     def _initialise_index(self):
         if os.path.exists(self.index_path):
             index = faiss.read_index(self.index_path)
             print(f"Loaded FAISS index from {self.index_path}")
+            self.index_exist = True
         else:
             index = faiss.IndexFlatL2(self.embedding_dim)
             print("Initialized a new FAISS index")
@@ -39,6 +42,7 @@ class LegalAidAgent:
 
         faiss.write_index(self.index, self.index_path)
         print(f"FAISS index saved to {self.index_path}")
+        self.index_exist = True
 
     def find_relevant_documents(self, query: str, top_k: int = 3):
         query_embedding = self.embedding_model.encode(query)

@@ -1,5 +1,5 @@
 import streamlit as st
-from src.assistant import Assistant
+from .src.assistant import Assistant
 
 legal_assistant = Assistant()
 
